@@ -8,13 +8,11 @@ const itemOption = async () => {
     const quantityList = [];
     const optionIDList = [];
     const optionNameList = [];
-    const totalQuantityList = [];
     let selectedList = [];
 
     options.forEach(option => {
-        quantityList.push(option.storeCnt);
+        quantityList.push(option.totalCnt);
         optionIDList.push(option.optionId);
-        totalQuantityList.push(option.totalCnt);
         optionNameList.push(option.optionName);
     });
 
@@ -173,27 +171,8 @@ const itemOption = async () => {
             tbody.children[i].children[0].children[0].style.color = 'gray';
             const soldoutBtn = document.createElement('button');
             soldoutBtn.classList.add('soldout-btn');
-
-            if (!totalQuantityList[i]) {
-                soldoutBtn.textContent = '전체 품절';
-                tbody.children[i].children[0].children[0].disabled = true;
-                tbody.children[i].appendChild(soldoutBtn);
-            } else {
-                soldoutBtn.textContent = '다른 매장 보기';
-                tbody.children[i].appendChild(soldoutBtn);
-                soldoutBtn.addEventListener('click', () => tbody.children[i].children[0].click());
-                tbody.children[i].children[0].addEventListener('click', () => {
-                    console.log('click');
-                    fetch(`/soldout/${localStorage.getItem('store_id')}/${optionIDList[i]}`)
-                        .then(res => res.text())
-                        .then(data => {
-                            const storeRow = data.split('<div id="wrap">')[1].split('<!--')[0];
-                            modalInModal.appendChild(createModal('soldout', storeRow));
-                            modalInModal.classList.add('display');
-                        })
-                        .catch(e => console.error(e));
-                });
-            }
+            soldoutBtn.textContent = '품절';
+            tbody.children[i].appendChild(soldoutBtn);
         } else {
             tbody.children[i].children[0].addEventListener('click', () => {
                 if (!selectedList.includes(tbody.children[i].children[0].textContent.trim())) {

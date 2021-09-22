@@ -439,7 +439,6 @@ td[class^="store-"] {
 }
 
 
-@media (min-width: 768px) {
     header {
         height: 150px;
     }
@@ -522,6 +521,3 @@ td[class^="store-"] {
     div[class^="s-option-"] > span {
         font-size: 1.2rem;
     }
-
-}
-
