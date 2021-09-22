@@ -13,9 +13,6 @@ const h1Title = document.querySelector('title-header');
 // 문서의 title 정하기
 const docTitle = document.getElementsByTagName('title')[0];
 // docTitle.textContent = `카테고리 : ${bigName}`;
-const maxNum = (Math.ceil(Number(count) / 9)).toString();
-localStorage.setItem('categoryMax', maxNum);
-console.log(localStorage.getItem('categoryMax'));
 let sortWay = localStorage.getItem('sort-way') || 'id';
 const goPrevBtn = document.querySelector('.go-prev');
 const micBtn = document.querySelector('.turn-on-mic');
@@ -42,6 +39,8 @@ const fetchData = (pageNum, category, sortWay) => {
         .then(data => {
             console.log(data);
             itemObjList = (JSON.parse(data))['ItemList'];
+            maxNum = (Math.ceil(Number((JSON.parse(data))['size']) / 9)).toString();
+            console.log(maxNum);
             tbody.innerHTML = '';
             itemObjList.forEach(function (item) {
                 tbody.appendChild(createItemCard(item));
@@ -63,6 +62,9 @@ const fetchCategory = (pageNum, category, sortWay) => {
         .catch(e => console.error(e));
 };
 fetchCategory('1', num, localStorage.getItem('sort-way'));
+let maxNum = (Math.ceil(Number(count) / 9)).toString();
+localStorage.setItem('categoryMax', maxNum);
+console.log(localStorage.getItem('categoryMax'));
 const midCatBar = document.querySelector('.mid-category');
 const smallCat = document.querySelector('.small-category');
 const smallCatBar = document.querySelector('.cat-button-container');

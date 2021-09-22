@@ -9,14 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 let curCategory, searchRes, count, bigName;
 let num = decodeURI(location.pathname.split('/')[2]);
-const fetchAPI = () => __awaiter(void 0, void 0, void 0, function* () {
+const fetchAPI = () => __awaiter(this, void 0, void 0, function* () {
     const res = yield fetch(`/dev/category/${num}`);
     const data = yield res.text();
     searchRes = (JSON.parse(data));
     bigName = searchRes['name'];
-    count = searchRes['size'];
     curCategory = searchRes['category'];
-    console.log(count, curCategory);
+    console.log(curCategory);
     const script = document.createElement('script');
     script.src = '/js/category.js';
     document.body.appendChild(script);
