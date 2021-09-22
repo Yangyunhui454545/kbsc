@@ -21,7 +21,5 @@ public class MainController {
 
     @GetMapping("/") // home page
     public String index(){ return "index";}
-    @GetMapping("/categoryList")
-    public String searchItem(){ return "searchItem/categoryList"; }
 
 }
