@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 상품 검색 결과로 상품 목록들이 카드 형식으로 나오는 페이지 (category와 유사한 페이지) -->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/category-part.css">
+  <link rel="stylesheet" href="/css/search-result.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <title>검색 결과</title>
+</head>
+
+<body>
+<div id="wrap">
+  <div class="modal-container">
+
+  </div>
+  <header>
+    <div class="title-container">
+      <button class="go-prev">&lt;</button>
+      <h1 class="title">검색 결과</h1>
+    </div>
+    <div class="top-button-container">
+      <button class="turn-on-mic" title="https://www.flaticon.com/authors/dave-gandy"></button>
+      <button class="go-cart" title="https://www.freepik.com"></button>
+    </div>
+  </header>
+  <div class="result-container">
+    <p class="result-text">
+      <span class="highlight result-item-title"></span>
+      <span> 의 검색 결과는 </span>
+      <span class="highlight result-item-count"></span>
+      <span> 건입니다.</span>
+    </p>
+  </div>
+  <div class="sort-container">
+    <button class="sort-btn-popularity">인기순</button>
+    <button class="sort-btn-orderCnt">판매수량순</button>
+    <button class="sort-btn-reviewCnt">리뷰순</button>
+  </div>
+  <div class="item-container">
+    <table class="table table-striped item-row-container">
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="/js/createModal.js"></script>
+<script src="/js/sortContainer.js"></script>
+<script src="/js/preSearch.js"></script>
+<script src="/js/createItemCard.js"></script>
+<script src="/js/checkPage.js"></script>
+</body>
+
+</html>

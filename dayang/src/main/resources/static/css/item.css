@@ -1,0 +1,210 @@
+#wrap { 
+  background-color: #FFF8E5; 
+  display: flex;
+  flex-flow: column nowrap;
+}
+header {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0;  
+  background-color: #fff;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+.go-prev {
+  width: 100px;
+  height: 100px;
+  font-size: 2.5rem;
+  color: #2E0A0A;
+  text-align: center;
+  line-height: 70px;
+  background-color: rgba(0, 0, 0, 0);
+}
+h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+.top-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 2rem;
+}
+.go-cart {
+  display: none;
+  margin-left: 25px;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url('../img/shopping-cart.png');
+  background-size: cover;
+  width: 64px;
+  height: 64px;
+  font-size: 0;
+}
+.img-container {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 60px;
+}
+.item-img {
+  border-radius: 50px;
+  width: auto;
+  height: auto;
+  max-width: 200px;
+  max-height: 400px;
+}
+.info-container {
+  display: flex;
+  flex-direction: column;
+  padding:25px;
+}
+.item-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  word-break: keep-all;
+}
+.price-container {
+  display: flex;
+  align-items: center;
+}
+.origin-price {
+  color: #A7A4A4;
+  text-decoration: line-through;
+  font-weight: 700;
+  padding-right: 20px;
+  font-size: 1rem;
+}
+.discount-price {
+  color: #E93C15;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+.rate-container {
+  margin: 25px 0;
+  color: #D9A40F;
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+.btn-container {
+  align-self: center;
+  display: flex;
+  padding: 10px;
+}
+.btn-container > * {
+  margin: 0 0.5rem;
+}
+.cont-btn {
+  width: 78px;
+  height: 79px;
+  border: none;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 44px;
+}
+.put-in-cart {
+  display: none;
+  background-color: #FFC41E;
+  background-image: url('../img/shopping-cart.png');
+}
+.go-test {
+  background-color: #FF8569;
+  background-image: url('../img/cosmetics.png');
+}
+.view-review {
+  background-color: #44A4FE;
+  background-image: url('../img/loupe.png');
+}
+footer {
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #2E0A0A;
+  color: #FFFAF9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+footer > p {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+@media (min-width: 768px) {
+  header {
+    height: 15%;
+  }
+
+  .go-prev {
+    font-size: 4.5rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 4.5rem;
+  }
+
+  .go-cart {
+    display: block;
+  }
+
+  .item-img {
+    width: 550px;
+    height: 550px;
+    border-radius: 50px;
+  }
+
+  .info-container {
+    padding: 50px;
+  }
+
+  .discount-price {
+    font-size: 2rem;
+  }
+
+  .origin-price {
+    font-size: 1.5rem;
+  }
+
+  .rate-container {
+    font-size: 2rem;
+  }
+
+  .item-title {
+    font-size: 2.5rem;
+  }
+
+  .put-in-cart {
+    display: block;
+  }
+
+  .cont-btn {
+    width: 128px;
+    height: 129px;
+    background-size: 64px;
+  }
+
+  footer > p {
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  footer {
+    height: 120px;
+  }
+
+  .go-prev {
+    width: 120px;
+    height: 120px;
+  }
+
+  .origin-price { padding-right: 40px;  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 개별 카테고리 (item 목록이 카드형식으로 배치되어 있는 화면) -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/category-part.css">
+    <link rel="stylesheet" href="/css/animation.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <title>카테고리</title>
+    <script src="/js/category_list.js"></script>
+</head>
+<body>
+
+<div id="wrap">
+    <div class="modal-container">
+
+    </div>
+    <header>
+        <div class="title-container">
+            <button class="go-prev">&lt;</button>
+            <h1 class="title-header"></h1>
+        </div>
+        <div class="top-button-container">
+            <button class="turn-on-mic" title="https://www.flaticon.com/authors/dave-gandy"></button>
+            <button class="go-cart" title="https://www.freepik.com"></button>
+        </div>
+    </header>
+    <div class="sort-container">
+        <button class="sort-btn-popularity">인기순</button>
+        <button class="sort-btn-orderCnt">판매수량순</button>
+        <button class="sort-btn-reviewCnt">리뷰순</button>
+    </div>
+    <div class="mid-category">
+
+    </div>
+    <div class="small-category">
+        <div class="cat-button-container">
+
+        </div>
+    </div>
+    <button class="fold fold-btn">^</button>
+    <div class="item-container">
+<!--        <div class="item-row-container">-->
+                <table class="table table-striped item-row-container" style="margin: 0; width: 100%">
+                    <tbody style="display: flex; flex-flow: row wrap; justify-content: center;">
+
+                    </tbody>
+                </table>
+    </div>
+</div>
+
+<script src="/js/createModal.js"></script>
+<script src="/js/sortContainer.js"></script>
+<script src="/js/preCategory.js"></script>
+<script src="/js/createItemCard.js"></script>
+<script src="/js/checkPage.js"></script>
+<script>
+
+</script>
+</body>
+</html>

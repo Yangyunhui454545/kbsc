@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장바구니</title>
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/cart.css">
+</head>
+<body>
+  <div id="wrap">
+    <header>
+      <div class="title-container">
+        <button class="go-prev">&lt;</button>
+        <h1 class="title">장바구니</h1>
+      </div>
+    </header>
+    <form
+            class="cart-form"
+            method="POST"
+            action="/orderSelectList"
+            id="selectForm"
+            enctype="application/json"
+    >
+      <input type="hidden" name="cartList" value="" class="selectInput">
+    </form>
+    <hr class="divide-line">
+    <div class="cart-container">
+        <div class="select-all-container">
+          <button class="select-all-btn">&#10004;</button>
+          <span class="select-all-span">전체 선택</span>
+          <button class="delete-all-btn">
+            <img src="/img/trash.png" style="width: 30px; height: 30px;">
+            &nbsp;전체 삭제
+          </button>
+        </div>
+        <div class="item-row-container">
+
+        </div>
+        <div class="cart-page-container">
+          <button class="go-prev-page-btn">&lt;</button>
+          <span class="current-page"></span>
+          <button class="go-next-page-btn">&gt;</button>
+        </div>
+    </div>
+    <div class="total-price-container">
+      <div class="total-pay">
+        <p class="price-info">총 결제 금액</p>
+        <p class="total-pay-price"></p>
+      </div>
+    </div>
+    <div class="cart-btn-container">
+      <button class="test-all-btn">전체 테스트</button>
+      <button class="go-payment-part-btn">선택 상품 결제</button>
+      <button class="go-payment-all-btn">전체 상품 결제</button>
+    </div>
+    <div class="modal-container">
+
+    </div>
+  </div>
+
+  <script th:inline="javascript">
+    const fullCartList = {};
+    const cartIdList = [];
+    let selectedCartList = new Set();
+    const itemObj = {};
+    const itemOptionObj = {};
+    const itemImgObj = {};
+    const cartCountObj = {};
+    const quantityObj = {};
+
+    let cartId;
+    let itemId;
+    let itemImgId;
+    let itemOptionId;
+    let wholePrice = 0;
+    const pageViewCount = 4;
+
+    /*<![CDATA[*/
+
+    /*[# th:each="quantity : ${storeQuantity}"]*/
+    itemOptionId = /*[[${quantity.item_option.id}]]*/;
+    quantityObj[itemOptionId] = /*[[${quantity.stock_quantity}]]*/;
+    /*[/]*/
+
+    /*[# th:each="item : ${items}"]*/
+    itemId = /*[[${item.id}]]*/
+    itemObj[itemId] = {
+      name: /*[[${item.name}]]*/,
+      originPrice: /*[[${item.item_price}]]*/,
+      discountPrice: /*[[${item.discount_price}]]*/,
+      isOptional: /*[[${item.is_optional}]]*/,
+      isTestable: /*[[${item.is_testable}]]*/,
+      quantity: /*[[${item.stockQuantity}]]*/
+    };
+    /*[/]*/
+
+    /*[# th:each="option : ${item_options}"]*/
+    itemOptionId =  /*[[${option.id}]]*/;
+    itemOptionObj[itemOptionId] = {
+      id: itemOptionId,
+      parentId: /*[[${option.item.id}]]*/,
+      name: /*[[${option.item_option_name}]]*/,
+      quantity: quantityObj[itemOptionId],
+      isThisCheck: true
+    };
+    selectedCartList.add(itemOptionId);
+    cartIdList.push(itemOptionId);
+    /*[/]*/
+
+    /*[# th:each="img : ${imgs}"]*/
+    itemImgId = /*[[${img.item.id}]]*/;
+    itemImgObj[itemImgId] = /*[[${img.item_img}]]*/;
+    /*[/]*/
+
+    /*[# th:each="cart : ${carts}"]*/
+    itemId = /*[[${cart.item.id}]]*/;
+    itemOptionId = /*[[${cart.item_option.id}]]*/;
+    cartId = /*[[${cart.id}]]*/;
+    cartCountObj[itemOptionId] = {
+      id: /*[[${cart.id}]]*/,
+      count: /*[[${cart.count}]]*/
+    };
+    fullCartList[itemOptionId] = cartId;
+    /*[/]*/
+
+    /*]]>*/
+
+    console.log(itemObj);
+    console.log(itemOptionObj);
+
+  </script>
+
+  <script src="/js/createModal.js"></script>
+  <script src="/js/cart.js"></script>
+</body>
+</html>
