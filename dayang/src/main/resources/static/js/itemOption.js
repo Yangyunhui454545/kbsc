@@ -2,6 +2,7 @@ const itemOption = async () => {
     const res = await fetch(`/dev/item/${url}/option?storeId=${localStorage.getItem('store_id')}`);
     const opt = await res.text();
     const options = (JSON.parse(opt))['ItemOption'];
+    const modalContainer = document.querySelector('.modal-container');
 
     console.log(options);
 
@@ -54,7 +55,6 @@ const itemOption = async () => {
     const optionSelect = document.querySelector('.option-select-tr > td');
     const foldOptionBtn = document.querySelector('.fold-option-btn');
     const cancelSpan = document.querySelector('.cancel');
-    const modalInModal = document.querySelector('.modal-in-modal');
 
 
     const addOption = (id, option_id, quantity, name) => {
@@ -63,6 +63,7 @@ const itemOption = async () => {
         nameSpan.textContent = name;
         sOptionDiv.classList.add(`s-option-${id}-${option_id}`);
 
+        const modalInModal = document.querySelector('.modal-in-modal');
         const countDiv = document.createElement('div');
         const subCountBtn = document.createElement('button');
         const countInput = document.createElement('input');
@@ -79,17 +80,17 @@ const itemOption = async () => {
         subCountBtn.textContent = '-';
         addCountBtn.textContent = '+';
 
-        selectedOptionList.push({ item_id: id, item_option_id: option_id, count: 1 });
+        selectedOptionList.push({ itemId: id, itemOptionId: option_id, count: 1 });
 
         subCountBtn.addEventListener('click', () => {
             if (Number(countInput.value) < 2) {
                 /* alert('수량은 1개 이상이어야 합니다.'); */
-                modalInModal.appendChild(createModal('lack'));
+                modalInModal.appendChild(createModal(modalInModal, 'lack'));
                 modalInModal.classList.add('display');
             } else {
                 countInput.value = Number(countInput.value) - 1;
                 for (let i = 0; i < selectedOptionList.length; i++) {
-                    if (selectedOptionList[i].item_option_id === option_id) {
+                    if (selectedOptionList[i].itemOptionId === option_id) {
                         selectedOptionList[i].count = Number(countInput.value);
                     }
                 }
@@ -97,7 +98,7 @@ const itemOption = async () => {
         });
         addCountBtn.addEventListener('click', () => {
             if (Number(countInput.value) >= quantity) {
-                modalInModal.appendChild(createModal('excess'));
+                modalInModal.appendChild(createModal(modalInModal, 'excess'));
                 modalInModal.classList.add('display');
                 /* alert('재고 상품보다 많이 담을 수 없습니다.'); */
             } else {
@@ -135,8 +136,11 @@ const itemOption = async () => {
     }
 
     cancelSpan.addEventListener('click', () => {
-        const modalContainer = document.querySelector('.modal-container');
+        const wrapContainer = document.getElementById('wrap');
         modalContainer.style.display = 'none';
+        const tbody = document.querySelector('tbody');
+        // wrapContainer.removeChild(document.getElementById('optionScript'));
+        tbody.innerHTML = '';
         selectedList = [];
         selectedOptionList = [];
         selectedOption.innerHTML = '';
@@ -149,6 +153,7 @@ const itemOption = async () => {
     });
 
     foldOptionBtn.addEventListener('click', () => {
+        console.log('twice?');
         if (foldOptionBtn.classList.contains('rotate')) {
             optionContainer.classList.add('fold-bar');
             optionContainer.classList.remove('unfold-bar');
@@ -188,6 +193,3 @@ const itemOption = async () => {
         }
     }
 }
-
-itemOption()
-    .catch(e => console.error(e));
