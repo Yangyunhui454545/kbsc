@@ -21,6 +21,7 @@
     </div>
   </header>
   <div class="img-container">
+    <p class="vegan-p"></p>
     <img class="item-img">
   </div>
   <div class="info-container">
@@ -58,8 +59,22 @@
             const item_img = data.Item.itemImage;
             console.log(item_img);
 
+            const imgContainer = document.querySelector('.img-container');
             const img_src = document.querySelector('.item-img');
             img_src.src = item_img;
+
+            if (data.Item.isVegan === 'Y') {
+              const veganP = document.querySelector('.vegan-p');
+              veganP.textContent = '🌱 환경을 지키는 비건상품 🌱';
+              const veganIcon = document.createElement('div');
+              veganIcon.classList.add('vegan-icon');
+              const veganImg = document.createElement('img');
+              veganImg.classList.add('vegan-img');
+              veganImg.src = '/img/green-tea.png';
+              veganIcon.appendChild(veganImg);
+              imgContainer.appendChild(veganIcon);
+            }
+
             const title = document.querySelector('.item-title');
             title.textContent = item_name;
 

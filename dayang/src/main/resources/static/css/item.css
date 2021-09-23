@@ -48,16 +48,41 @@ h1 {
 .img-container {
   background-color: #fff;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center; 
   padding: 60px;
+}
+.vegan-p {
+  color: #2F990A;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 .item-img {
   border-radius: 50px;
   width: auto;
   height: auto;
-  max-width: 200px;
-  max-height: 400px;
+  position: relative;
+}
+.vegan-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  border-radius: 50%;
+  background: #B1F041;
+  border: 2px solid #E8FFBF;
+  width: 96px;
+  height: 96px;
+  /*margin-top: -32px;*/
+  /*margin-right: -32px;*/
+  z-index: 10;
+}
+.vegan-img {
+  width: 48px;
+  height: 48px;
 }
 .info-container {
   display: flex;

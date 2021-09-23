@@ -1,23 +1,3 @@
-fetch(`/dev/category/30/itemList?page=1&sort=orderCnt`)
-    .then(res => res.text())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(e => console.error(e));
-fetch(`/dev/category/30/itemList?page=2&sort=orderCnt`)
-    .then(res => res.text())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(e => console.error(e));
-fetch(`/dev/category/30/itemList?page=3&sort=orderCnt`)
-    .then(res => res.text())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(e => console.error(e));
-
-
 // titleContainer의 title 정하기
 const h1Title: HTMLHeadingElement = document.querySelector('.title-header') as HTMLHeadingElement;
 h1Title.textContent = bigName;
@@ -49,6 +29,7 @@ const tbody: HTMLTableSectionElement = document.querySelector('tbody') as HTMLTa
 checkPage('category');
 
 interface itemInfo {
+    isVegan: string,
     itemDiscountPrice: string,
     itemId: string,
     itemImage: string,

@@ -132,6 +132,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
   border: 3px rgba(255, 218, 115, 0.7) solid;
   border-radius: 10px; 
   background-color: #fff;
@@ -140,6 +141,26 @@ h1 {
 }
 .item-card > * {
   cursor: pointer;
+}
+.vegan-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  background: #B1F041;
+  border: 2px solid #E8FFBF;
+  width: 64px;
+  height: 64px;
+  margin-top: -32px;
+  margin-right: -32px;
+  z-index: 10;
+}
+.vegan-img {
+  width: 32px;
+  height: 32px;
 }
 .item-img-area {
   display: flex;

@@ -55,5 +55,15 @@ const createItemCard = (item: itemInfo): HTMLTableRowElement => {
     itemCard.appendChild(testTd);
   }
 
+  if (item.isVegan === 'Y') {
+    const veganIcon: HTMLDivElement = document.createElement('div');
+    veganIcon.classList.add('vegan-icon');
+    const veganImg: HTMLImageElement = document.createElement('img');
+    veganImg.classList.add('vegan-img');
+    veganImg.src = './img/green-tea.png';
+    veganIcon.appendChild(veganImg);
+    itemCard.appendChild(veganIcon);
+  }
+
   return itemCard;
 }
