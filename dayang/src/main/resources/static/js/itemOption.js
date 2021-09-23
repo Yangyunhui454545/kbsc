@@ -80,7 +80,7 @@ const itemOption = async () => {
         subCountBtn.textContent = '-';
         addCountBtn.textContent = '+';
 
-        selectedOptionList.push({ itemId: id, itemOptionId: option_id, count: 1 });
+        selectedOptionList.push({ item_id: id, item_option_id: option_id, count: 1 });
 
         subCountBtn.addEventListener('click', () => {
             if (Number(countInput.value) < 2) {
@@ -90,7 +90,7 @@ const itemOption = async () => {
             } else {
                 countInput.value = Number(countInput.value) - 1;
                 for (let i = 0; i < selectedOptionList.length; i++) {
-                    if (selectedOptionList[i].itemOptionId === option_id) {
+                    if (selectedOptionList[i].item_option_id === option_id) {
                         selectedOptionList[i].count = Number(countInput.value);
                     }
                 }

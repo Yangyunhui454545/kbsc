@@ -8,11 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 // titleContainer의 title 정하기
-const h1Title = document.querySelector('title-header');
-// h1Title.textContent = bigName;
+const h1Title = document.querySelector('.title-header');
+h1Title.textContent = bigName;
 // 문서의 title 정하기
 const docTitle = document.getElementsByTagName('title')[0];
-// docTitle.textContent = `카테고리 : ${bigName}`;
+docTitle.textContent = `카테고리 : ${bigName}`;
 let sortWay = localStorage.getItem('sort-way') || 'id';
 const goPrevBtn = document.querySelector('.go-prev');
 const micBtn = document.querySelector('.turn-on-mic');

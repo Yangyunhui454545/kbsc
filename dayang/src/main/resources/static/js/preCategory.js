@@ -15,7 +15,6 @@ const fetchAPI = () => __awaiter(this, void 0, void 0, function* () {
     searchRes = (JSON.parse(data));
     bigName = searchRes['name'];
     curCategory = searchRes['category'];
-    console.log(curCategory);
     const script = document.createElement('script');
     script.src = '/js/category.js';
     document.body.appendChild(script);
