@@ -1,6 +1,11 @@
 const checkPage = (state) => {
     const checkFirstPage = (page) => (page <= 1);
-    const checkLastPage = (page) => page >= Number(localStorage.getItem('searchMax'));
+    const checkLastPage = (page) => {
+        if (state === 'search') {
+            return page >= Number(localStorage.getItem('searchMax'));
+        }
+        return page >= Number(localStorage.getItem('categoryMax'));
+    };
     const modalContainer = document.querySelector('.modal-container');
     const itemPrevBtn = document.createElement('button');
     itemPrevBtn.classList.add('item-btn', 'item-prev-btn');
@@ -23,6 +28,7 @@ const checkPage = (state) => {
                 fetchData((Number(localStorage.getItem('page')) - 1).toString(), num, sortWay);
             }
             localStorage.setItem('page', (Number(localStorage.getItem('page')) - 1).toString());
+            console.log(localStorage.getItem('page'));
         }
     });
     itemContainer.insertBefore(itemPrevBtn, itemContainer.firstElementChild);
@@ -34,6 +40,7 @@ const checkPage = (state) => {
         }
         else {
             tbody.innerHTML = '';
+            console.log((Number(localStorage.getItem('page')) + 1).toString());
             if (state === 'search') {
                 fetchData((Number(localStorage.getItem('page')) + 1).toString(), keyword, sortWay);
             }
@@ -41,6 +48,7 @@ const checkPage = (state) => {
                 fetchData((Number(localStorage.getItem('page')) + 1).toString(), num, sortWay);
             }
             localStorage.setItem('page', (Number(localStorage.getItem('page')) + 1).toString());
+            console.log(localStorage.getItem('page'));
         }
     });
     itemContainer.appendChild(itemNextBtn);

@@ -13,6 +13,8 @@ h1Title.textContent = bigName;
 // 문서의 title 정하기
 const docTitle = document.getElementsByTagName('title')[0];
 docTitle.textContent = `카테고리 : ${bigName}`;
+let count = 0;
+let maxNum = 0;
 let sortWay = localStorage.getItem('sort-way') || 'id';
 const goPrevBtn = document.querySelector('.go-prev');
 const micBtn = document.querySelector('.turn-on-mic');
@@ -32,56 +34,51 @@ checkPage('category');
 ;
 // 중카테고리, 소카테고리 이름과 번호 가져오는 fetch
 const fetchData = (pageNum, category, sortWay) => {
-    console.log(sortWay);
+    console.log(sortWay, pageNum);
     let itemObjList = [];
     fetch(`/dev/category/${category}/itemList?page=${pageNum}&sort=${sortWay}`)
         .then(res => res.text())
         .then(data => {
-            console.log(data);
             itemObjList = (JSON.parse(data))['ItemList'];
             maxNum = (Math.ceil(Number((JSON.parse(data))['size']) / 9)).toString();
-            console.log(maxNum);
+            localStorage.setItem('categoryMax', maxNum);
             tbody.innerHTML = '';
             itemObjList.forEach(function (item) {
                 tbody.appendChild(createItemCard(item));
             });
-            console.log(itemObjList);
         })
         .catch(e => console.error(e));
 };
 const fetchCategory = (pageNum, category, sortWay) => {
-    console.log(sortWay);
     let categoryList = [];
     fetch(`/dev/category/${category}`)
         .then(res => res.text())
         .then(data => {
             categoryList = (JSON.parse(data))['category'];
-            console.log(categoryList);
             fetchData(pageNum, category, sortWay);
         })
         .catch(e => console.error(e));
 };
 fetchCategory('1', num, localStorage.getItem('sort-way'));
-let maxNum = (Math.ceil(Number(count) / 9)).toString();
-localStorage.setItem('categoryMax', maxNum);
 console.log(localStorage.getItem('categoryMax'));
 const midCatBar = document.querySelector('.mid-category');
 const smallCat = document.querySelector('.small-category');
 const smallCatBar = document.querySelector('.cat-button-container');
 // // 중카테고리 요소 생성해서 mid-category 자식으로 추가
-curCategory.forEach(function (mid) {
+console.log('why' + JSON.stringify(curCategory));
+for (let i = 0; i < curCategory.length; i++) {
     const midBtn = document.createElement('button');
     midBtn.classList.add('mid-btn', 'cat');
-    midBtn.setAttribute('data-id', mid.categoryId);
-    midBtn.textContent = mid['categoryName'];
+    midBtn.setAttribute('data-id', curCategory[i].categoryId);
+    midBtn.textContent = curCategory[i]['categoryName'];
     midBtn.addEventListener('click', () => {
-        console.log(mid.categoryId);
-        const catId = mid.categoryId;
+        console.log(curCategory[i].categoryId);
+        const catId = curCategory[i].categoryId;
         localStorage.setItem('page', '1');
-        fetchData('1', mid.categoryId, sortWay);
+        fetchData('1', curCategory[i].categoryId, sortWay);
     });
     midCatBar.appendChild(midBtn);
-});
+}
 const midCatList = document.querySelectorAll('.mid-btn');
 for (let i = 0; i < midCatList.length; i++) {
     // 중 카테고리의 각 요소에 onclick 이벤트 핸들러 붙이기

@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 let keyword, searchRes, count;
 const fetchAPI = async () => {
     keyword = decodeURI(location.pathname.split('/')[2]);
+    localStorage.setItem('page', '1');
 
     const res = await fetch(`/dev/searchResult?keyword=${keyword}`);
     const data = await res.text();

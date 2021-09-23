@@ -44,7 +44,14 @@ const fetchData = (pageNum: string, category: string, sortWay: string): Void => 
     console.log(sortWay);
     let itemObjList: itemInfo[] = [];
 
-    fetch(`/dev/category/${category}/itemList?page=${pageNum}&sort=${sortWay}`)
+    let fetchURL: string;
+    if (Number(num) === 140) {
+        fetchURL = `/dev/vegan`;
+    } else {
+        fetchURL = `/dev/category/${category}`
+    }
+
+    fetch(`${fetchURL}/itemList?page=${pageNum}&sort=${sortWay}`)
         .then(res => res.text())
         .then(data => {
             console.log(data);
@@ -63,8 +70,14 @@ const fetchData = (pageNum: string, category: string, sortWay: string): Void => 
 const fetchCategory = (pageNum: string, category: string, sortWay: string): void => {
     console.log(sortWay);
     let categoryList: itemInfo[] = [];
+    let fetchURL: string;
+    if (Number(num) === 140) {
+        fetchURL = `/dev/vegan`;
+    } else {
+        fetchURL = `/dev/category/${category}`
+    }
 
-    fetch(`/dev/category/${category}`)
+    fetch(fetchURL)
         .then(res => res.text())
         .then(data => {
             categoryList = (JSON.parse(data))['category'];
@@ -129,7 +142,7 @@ for (let i = 0; i < midCatList.length; i++) {
         const res = await fetch(`/dev/category/${num}`);
         const data = await res.text();
         curCategory = (JSON.parse(data))['category'];
-        if (curCategory.length) {
+        if (curCategory.length > 1) {
             curCategory.forEach(small => {
                 const smallBtn = document.createElement('button');
                 smallBtn.classList.add('small-btn', 'cat');
