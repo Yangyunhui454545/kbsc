@@ -28,7 +28,7 @@ public class CartController {
         List<Item> items = cartService.getItem();
         List<Item_option> item_options = cartService.getItemOption();
         List<Item_img> imgs = itemService.getCartImg(items);
-        Store store = storeService.findById(store_id);
+        Store store = storeService.findById(1L);
         List<StoreQuantity> storeQuantities = new ArrayList<>();
         for (Item_option item_option : item_options){
              storeQuantities.add(itemService.storeQuantityList(item_option, store));
