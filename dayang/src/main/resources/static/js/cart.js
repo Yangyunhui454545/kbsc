@@ -32,7 +32,7 @@ deleteAllBtn.addEventListener('click', e => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                modalContainer.appendChild(createModal('clear'));
+                modalContainer.appendChild(createModal(modalContainer, 'clear'));
                 modalContainer.classList.add('display');
                 setTimeout(() => location.reload(), 1500);
             })
@@ -77,7 +77,7 @@ const createLeftArea = (optionId) => {
             itemCheckBtn.innerHTML = '&#10004;';
             wholePrice += price;
             totalPayPrice.textContent = `${wholePrice} 원`;
-            selectedCartList.add(Number(optionId));
+            selectedCartList.push(Number(optionId));
         }
         console.log(selectedCartList);
     });
@@ -103,7 +103,7 @@ const createRightArea = (optionId) => {
                 .then(res => res.json())
                 .then(data => console.log(data))
                 .catch(e => console.error(e));
-            modalContainer.appendChild(createModal('delete'));
+            modalContainer.appendChild(createModal(modalContainer, 'delete'));
             modalContainer.classList.add('display');
             setTimeout(() => {
                 location.href = `/cartList/${localStorage.getItem('store_id')}`;
@@ -162,7 +162,7 @@ const createCountPriceArea = (optionId) => {
             return;
         }
         if (Number(countInput.value) < 2) {
-            modalContainer.appendChild(createModal('lack'));
+            modalContainer.appendChild(createModal(modalContainer, 'lack'));
             modalContainer.classList.add('display');
         }
         else {
@@ -196,7 +196,7 @@ const createCountPriceArea = (optionId) => {
             return;
         }
         if (Number(countInput.value) >= itemOptionObj[optionId].quantity) {
-            modalContainer.appendChild(createModal('excess'));
+            modalContainer.appendChild(createModal(modalContainer, 'excess'));
             modalContainer.classList.add('display');
         }
         else {
@@ -243,7 +243,7 @@ const goNextPageBtn = document.querySelector('.go-next-page-btn');
 const movePage = (state, inc) => {
     if ((curCartPage === 1 && state === 'first') ||
         (curCartPage === maxCartPage && state === 'last')) {
-        modalContainer.appendChild(createModal(state));
+        modalContainer.appendChild(createModal(modalContainer, state));
         modalContainer.classList.add('display');
     }
     else {
