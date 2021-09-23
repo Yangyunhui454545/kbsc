@@ -34,7 +34,7 @@ public class DevItemController {
 
         if(categoryId ==140L){
             Map<String, Object> map = devItemService.vegan(pageNum, sort);
-            jsonObject.put("Item", map.get("item"));
+            jsonObject.put("ItemList", map.get("item"));
             jsonObject.put("size", map.get("size"));
             return  jsonObject;
         }
