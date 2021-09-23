@@ -24,11 +24,24 @@ public class DevCategoryController {
     public JSONObject categories(@PathVariable("categoryId")String categoryId){
         JSONObject jsonObject = new JSONObject();
         Long id = Long.parseLong(categoryId);
-        CategoryDTO categoryDTO = devCategoryService.categoryDTO(devCategoryService.findById(id));
-        List<CategoryDTO> categoryDTOList = devCategoryService.categoryChild(id);
-        jsonObject.put("category", categoryDTOList);
-        jsonObject.put("size", categoryDTOList.size());
-        jsonObject.put("name", categoryDTO.getCategoryName());
+        if(id == 140L){
+            List<CategoryDTO> categoryDTOList = new ArrayList<>();
+            CategoryDTO categoryDTO = new CategoryDTO();
+            categoryDTO.setCategoryId(140L);
+            categoryDTO.setCategoryName("비건");
+            categoryDTOList.add(categoryDTO);
+            jsonObject.put("category", categoryDTOList);
+            jsonObject.put("size", categoryDTOList.size());
+            jsonObject.put("name", categoryDTO.getCategoryName());
+        }
+        else{
+            CategoryDTO categoryDTO = devCategoryService.categoryDTO(devCategoryService.findById(id));
+            List<CategoryDTO> categoryDTOList = devCategoryService.categoryChild(id);
+            jsonObject.put("category", categoryDTOList);
+            jsonObject.put("size", categoryDTOList.size());
+            jsonObject.put("name", categoryDTO.getCategoryName());
+        }
+
 
         return jsonObject;
     }
