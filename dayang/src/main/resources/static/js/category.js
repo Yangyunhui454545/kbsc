@@ -36,9 +36,10 @@ checkPage('category');
 const fetchData = (pageNum, category, sortWay) => {
     console.log(sortWay, pageNum);
     let itemObjList = [];
-    fetch(`/dev/category/${category}/itemList?page=${pageNum}&sort=${sortWay}`)
+    fetch(`/dev/category/${category}/itemList?pageNum=${pageNum}&sort=${sortWay}`)
         .then(res => res.text())
         .then(data => {
+            console.log(data);
             itemObjList = (JSON.parse(data))['ItemList'];
             maxNum = (Math.ceil(Number((JSON.parse(data))['size']) / 9)).toString();
             localStorage.setItem('categoryMax', maxNum);
