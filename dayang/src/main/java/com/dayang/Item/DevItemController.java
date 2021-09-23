@@ -31,28 +31,38 @@ public class DevItemController {
                                @RequestParam(value = "sort", defaultValue = "id") String sort){
         JSONObject jsonObject = new JSONObject();
         Long categoryId = Long.parseLong(id);
-        List<CategoryDTO> categories = new ArrayList<>(); //카테고리 리스트
-        List<ItemDTO> itemDTOList = new ArrayList<>(); //아이템 리스트
 
-        ////////////////카테고리/////////////////////////
-        CategoryDTO categoryDTO = devCategoryService.categoryDTO(devCategoryService.findById(categoryId));
-        categories.add(categoryDTO);
+        if(categoryId ==140L){
+            Map<String, Object> map = devItemService.vegan(pageNum, sort);
+            jsonObject.put("Item", map.get("item"));
+            jsonObject.put("size", map.get("size"));
+            return  jsonObject;
+        }
+        else{
+            List<CategoryDTO> categories = new ArrayList<>(); //카테고리 리스트
+            List<ItemDTO> itemDTOList = new ArrayList<>(); //아이템 리스트
 
-        List<CategoryDTO> firstCategoryList = devCategoryService.firstCategory(categoryId);
-        categories.addAll(firstCategoryList);
+            ////////////////카테고리/////////////////////////
+            CategoryDTO categoryDTO = devCategoryService.categoryDTO(devCategoryService.findById(categoryId));
+            categories.add(categoryDTO);
 
-        for(CategoryDTO c : firstCategoryList){
-            List<CategoryDTO> secondCategoryList = devCategoryService.secondCategory(c.getCategoryId());
-            if(secondCategoryList!=null) categories.addAll(secondCategoryList);
+            List<CategoryDTO> firstCategoryList = devCategoryService.firstCategory(categoryId);
+            categories.addAll(firstCategoryList);
+
+            for(CategoryDTO c : firstCategoryList){
+                List<CategoryDTO> secondCategoryList = devCategoryService.secondCategory(c.getCategoryId());
+                if(secondCategoryList!=null) categories.addAll(secondCategoryList);
+            }
+
+            ////////////////아이템//////////////////////////
+            Map<String, Object> map  = devItemService.findByCategory(categories, pageNum,  sort);
+            itemDTOList  = (List<ItemDTO>) map.get("item");
+            Long size = (Long) map.get("size");
+            jsonObject.put("ItemList", itemDTOList);
+            jsonObject.put("size", size);
+            return jsonObject;
         }
 
-        ////////////////아이템//////////////////////////
-        Map<String, Object> map  = devItemService.findByCategory(categories, pageNum,  sort);
-        itemDTOList  = (List<ItemDTO>) map.get("item");
-        Long size = (Long) map.get("size");
-        jsonObject.put("ItemList", itemDTOList);
-        jsonObject.put("size", size);
-        return jsonObject;
     }
 
     @GetMapping("/item/{itemId}")
@@ -131,13 +141,5 @@ public class DevItemController {
         return jsonObject;
     }
 
-    @GetMapping("/vegan")
-    public JSONObject veagnItem(@RequestParam("pageNum")int pageNum, @RequestParam("sort")String sort){
-        JSONObject jsonObject = new JSONObject();
-        Map<String, Object> map = devItemService.vegan(pageNum, sort);
-        jsonObject.put("Item", map.get("item"));
-        jsonObject.put("size", map.get("size"));
-        return  jsonObject;
-    }
 
 }
