@@ -108,5 +108,6 @@ if (rateCnt) {
   });
 
 } else {
+  reviewContainer.classList.add('no-review');
   reviewContainer.textContent = '리뷰가 없는 상품입니다.'
 }

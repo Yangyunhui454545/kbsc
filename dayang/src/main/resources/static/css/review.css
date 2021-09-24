@@ -131,3 +131,11 @@ img {
     background-color: #44A4FE;
     background-image: url('../img/loupe.png');
 }
+.no-review {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    font-size: 3.5rem;
+    font-weight: 700;
+}
