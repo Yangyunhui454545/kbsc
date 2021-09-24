@@ -67,7 +67,7 @@ const createLeftArea = (optionId) => {
             itemCheckBtn.innerHTML = '';
             wholePrice -= price;
             totalPayPrice.textContent = `${wholePrice} 원`;
-            selectedCartList = [...selectedCartList].filter(id => id !== Number(optionId));
+            selectedCartList = new Set([...selectedCartList].filter(id => id !== Number(optionId)));
         }
         else {
             itemOptionObj[optionId].isThisCheck = true;
@@ -77,7 +77,7 @@ const createLeftArea = (optionId) => {
             itemCheckBtn.innerHTML = '&#10004;';
             wholePrice += price;
             totalPayPrice.textContent = `${wholePrice} 원`;
-            selectedCartList.push(Number(optionId));
+            selectedCartList.add(Number(optionId));
         }
         console.log(selectedCartList);
     });
@@ -288,6 +288,7 @@ for (let i = 0; i < pageViewCount; i++) {
     }
 }
 totalPayPrice.textContent = `${wholePrice} 원`;
+let allPrice = wholePrice;
 const selectAllBtn = document.querySelector('.select-all-btn');
 let isSelectAll = true;
 selectAllBtn.addEventListener('click', () => {
@@ -315,6 +316,7 @@ selectAllBtn.addEventListener('click', () => {
             row.children[0].children[1].innerHTML = '';
         }
     });
+
     if (!isSelectAll) {
         wholePrice = 0;
         totalPayPrice.textContent = `0 원`;
@@ -322,7 +324,8 @@ selectAllBtn.addEventListener('click', () => {
         selectedCartList.clear();
     }
     else {
-        totalPayPrice.textContent = `${wholePrice} 원`;
+        wholePrice = allPrice;
+        totalPayPrice.textContent = `${allPrice} 원`;
         selectAllBtn.innerHTML = '&#10004;';
         selectedCartList = new Set(cartIdList);
     }

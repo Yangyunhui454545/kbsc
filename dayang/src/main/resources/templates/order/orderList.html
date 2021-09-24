@@ -393,6 +393,7 @@
     });
 
     const form = document.querySelector('.order-form');
+    // form.action = `/order?store_id=1`;
     form.action = `/order?store_id=${localStorage.getItem('store_id')}`;
     const selectInput = document.querySelector('.orderInput');
 
