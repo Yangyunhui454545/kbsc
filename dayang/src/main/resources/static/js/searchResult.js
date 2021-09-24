@@ -28,7 +28,10 @@ cartBtn.addEventListener('click', () => {
 });
 goPrevBtn.addEventListener('click', () => { history.back(); });
 const itemContainer = document.querySelector('.item-container');
-if (count === '0') {
+if (!count) {
+    const itemRowContainer = document.querySelector('.item-row-container');
+    itemRowContainer.style.width = 'auto';
+
     const sortContainer = document.querySelector('.sort-container');
     sortContainer.style.display = 'none';
     const noResultBox = document.createElement('div');
@@ -41,8 +44,8 @@ if (count === '0') {
     noResultCaution.textContent = '현재 취급하지 않는 상품입니다. :(';
     const noResultBtnContainer = document.createElement('div');
     noResultBtnContainer.classList.add('no-result-btn-container');
-    const goSearchBtn = document.querySelector('.go-search');
-    const goHomeBtn = document.querySelector('.go-home');
+    const goSearchBtn = document.createElement('button');
+    const goHomeBtn = document.createElement('button');
     goSearchBtn.classList.add('no-result-btn');
     goSearchBtn.classList.add('go-search');
     goSearchBtn.textContent = '다시 검색하기';
@@ -53,7 +56,7 @@ if (count === '0') {
     goHomeBtn.classList.add('go-home');
     goHomeBtn.textContent = '홈으로 가기';
     goHomeBtn.addEventListener('click', () => {
-        location.href = '/main';
+        location.href = '/';
     });
     noResultBtnContainer.appendChild(goSearchBtn);
     noResultBtnContainer.appendChild(goHomeBtn);
