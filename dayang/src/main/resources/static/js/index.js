@@ -1,9 +1,5 @@
 "use strict";
 const storeId = localStorage.getItem('store_id');
-const storeName = localStorage.getItem('store_name');
-const storeNameP = document.querySelector('.store-name');
-storeNameP.textContent = storeName;
-storeNameP.addEventListener('click', () => location.href = `/admin-check?store_id=${storeId}`);
 const clockH3 = document.querySelector('.clock');
 const clockFunc = () => {
     let today = new Date();
