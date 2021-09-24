@@ -3,6 +3,9 @@ const BestItemList = [];
 let b_item_id = '';
 const ItemIdList = [];
 
+const goItemPage = id => location.href = `/item/${id}`;
+
+
 fetch(`/dev/bestSeller`)
     .then(res => res.text())
     .then(data => {
@@ -11,6 +14,7 @@ fetch(`/dev/bestSeller`)
         try {
             for (let i = 0; i < data.Item.length; i++) {
                 b_item_id = data.Item[i].itemId;
+                console.log(b_item_id);
                 ItemIdList.push(b_item_id);
                 BestItemObj[b_item_id] = {
                     name: data.Item[i].itemName,
@@ -52,7 +56,6 @@ fetch(`/dev/bestSeller`)
             console.error(error);
         }
     })
-const goItemPage = id => location.href = `/item/${id}`;
 
 
 const mdItemObj = {};
@@ -79,7 +82,6 @@ fetch(`/dev/mdItem`)
 
         console.log(mdItemObj);
 
-        /* (다인언니....) 페이징 처리 부분을 어떻게 해결해야할지 모르겠씸다.. help...*/
         const goPrevBtn = document.querySelector('.go-prev');
         const turnOnMicBtn = document.querySelector('.turn-on-mic');
         const goCartBtn = document.querySelector('.go-cart');
@@ -98,7 +100,7 @@ fetch(`/dev/mdItem`)
 
             const cardImg = document.createElement('div');
             cardImg.classList.add('card-img');
-            cardImg.addEventListener('click', item_id => goItemPage(item_id));
+            cardImg.addEventListener('click', () => goItemPage(item_id));
             const thumbnailImg = document.createElement('img');
             thumbnailImg.classList.add('thumbnail-img');
             thumbnailImg.src = mdItemObj[item_id].item_img;
@@ -114,7 +116,7 @@ fetch(`/dev/mdItem`)
 
             const itemTitle = document.createElement('div');
             itemTitle.classList.add('item-title');
-            itemTitle.addEventListener('click', item_id => goItemPage(item_id));
+            itemTitle.addEventListener('click', () => goItemPage(item_id));
             itemTitle.textContent = mdItemObj[item_id].name;
             itemCard.appendChild(itemTitle);
 
@@ -134,7 +136,7 @@ fetch(`/dev/mdItem`)
                 const goTestDiv = document.createElement('div');
                 const goTestBtn = document.createElement('button');
                 goTestBtn.classList.add('go-test');
-                goTestBtn.addEventListener('click', item_id => goItemPage(id));
+                goTestBtn.addEventListener('click', () => goItemPage(id));
                 goTestBtn.textContent = '테스트';
                 goTestDiv.appendChild(goTestBtn);
                 itemCard.appendChild(goTestDiv);
@@ -155,8 +157,6 @@ fetch(`/dev/mdItem`)
             mdItemCardList.push(createMdItemCard(mdItemList[i], 'hidden'));
         }
         console.log(mdItemCardObj);
-
-        const goItemPage = id => location.href = `/item/${id}`;
 
         const mdGoPrevBtn = document.querySelector('.md-go-prev-btn');
         const mdGoNextBtn = document.querySelector('.md-go-next-btn');
