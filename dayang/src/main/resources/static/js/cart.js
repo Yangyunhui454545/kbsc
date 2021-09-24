@@ -2,14 +2,9 @@ const itemRowContainer = document.querySelector('.item-row-container');
 const itemRowList = [];
 const totalPayPrice = document.querySelector('.total-pay-price');
 const modalContainer = document.querySelector('.modal-container');
-const goTestAllBtn = document.querySelector('.test-all-btn');
 const goPaymentPartBtn = document.querySelector('.go-payment-part-btn');
 const goPaymentAllBtn = document.querySelector('.go-payment-all-btn');
 const deleteAllBtn = document.querySelector('.delete-all-btn');
-goTestAllBtn.addEventListener('click', e => {
-    e.preventDefault();
-    location.href = '/testAll';
-});
 goPaymentPartBtn.addEventListener('click', e => {
     e.preventDefault();
     const selectedCart = [];

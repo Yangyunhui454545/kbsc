@@ -225,11 +225,11 @@ fetch(`/dev/testSingleColor?itemId=${url}`)
         goPrevBtn.addEventListener('click', () => history.back());
         goCartBtn.addEventListener('click', () => location.href = `/cartList/${localStorage.getItem('store_id')}`);
 
-        const addItemBtn = document.querySelector('.add-item');
-        const payItemBtn = document.querySelector('.pay-item');
+        // const addItemBtn = document.querySelector('.add-item');
+        // const payItemBtn = document.querySelector('.pay-item');
+        //
+        // addItemBtn.addEventListener('click', () => location.href = '/categoryList');
+        // payItemBtn.addEventListener('click', () => location.href = '/cartList');
 
-        addItemBtn.addEventListener('click', () => location.href = '/categoryList');
-        payItemBtn.addEventListener('click', () => location.href = '/cartList');
-
-    })
+    });
 

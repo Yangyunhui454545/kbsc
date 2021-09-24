@@ -260,9 +260,6 @@ h1 {
   font-weight: 700;
   border-radius: 20px;
 }
-.test-all-btn {
-  background: #F66657 !important;
-}
 .delete-all-btn {
     position: absolute;
     top: 30px;
@@ -272,6 +269,9 @@ h1 {
 }
 .delete-all-btn > img {
   filter: invert(1);
+}
+.go-payment-all-btn {
+  background: #F66657 !important;
 }
 .modal-container {
   display: none;
