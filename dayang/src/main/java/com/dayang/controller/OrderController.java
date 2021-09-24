@@ -56,7 +56,7 @@ public class OrderController {
         for(Long l :longId){
             cart.add(cartService.findOne(l));
         }
-        Store store = storeService.findById(id);
+        Store store = storeService.findById(1L);
         int price =0;
         for(Cart cart1 : cart){
             price += (cart1.getItem().getDiscount_price()) * cart1.getCount();
