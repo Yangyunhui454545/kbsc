@@ -12,7 +12,7 @@ let num = decodeURI(location.pathname.split('/')[2]);
 const fetchAPI = () => __awaiter(this, void 0, void 0, function* () {
     localStorage.setItem('page', '1');
     if (!localStorage.getItem('sort-way')) {
-        localStorage.setItem('sort-way', 'id');
+        localStorage.setItem('sort-way', 'popularity');
     }
     const res = yield fetch(`/dev/category/${num}`);
     const data = yield res.text();
