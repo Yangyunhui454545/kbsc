@@ -1,3 +1,4 @@
+const currentPage = 'search-';
 ;
 const resultItemTitle = document.querySelector('.result-item-title');
 resultItemTitle.textContent = keyword;

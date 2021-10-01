@@ -8,8 +8,8 @@ const sortContainerFunc = (sortContainer, state) => {
                     sortContainer.children[j].classList.remove('selected-btn');
                 }
             }
-            localStorage.setItem(`${sortWay}sort-way`, sortContainer.children[i].className.split('-')[sortContainer.children[i].className.split('-').length - 1]);
-            sortWay = localStorage.getItem(`${sortWay}sort-way`);
+            localStorage.setItem(`${currentPage}sort-way`, sortContainer.children[i].className.split('-')[sortContainer.children[i].className.split('-').length - 1]);
+            sortWay = localStorage.getItem(`${currentPage}sort-way`);
             sortContainer.children[i].classList.add('selected-btn');
             localStorage.setItem('page', '1');
             tbody.innerHTML = '';

@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+const currentPage = '';
 // titleContainer의 title 정하기
 const h1Title = document.querySelector('.title-header');
 h1Title.textContent = bigName;
